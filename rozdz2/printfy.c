@@ -2,8 +2,11 @@
 
 int main(void)
 {
-    int test = 123;
+    int test;
 
-    printf("x = %d\t 0x = %#o\t 0xx = %#x\n", test, test, test);
+    printf("Podaj liczbe: ");
+    scanf("%d", &test);
+
+    printf("\nx = %d\t 0x = %#o\t 0xx = %#x\n", test, test, test);
     return 0;
 }
