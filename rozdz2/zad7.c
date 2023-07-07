@@ -8,7 +8,7 @@ int main(void)
     printf("Podaj wzrost w cm: ");
     scanf("%f", &scanned_height);
 
-    printf("Wzrost %fcm to %finch\n", scanned_height,scanned_height / inch_to_cal);
+    printf("Wzrost %1.2fcm to %1.2finch\n", scanned_height,scanned_height / inch_to_cal);
 
     return 0;
 }
