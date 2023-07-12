@@ -1,0 +1,1 @@
+add_library(tests_lib slongest_test.cpp)
