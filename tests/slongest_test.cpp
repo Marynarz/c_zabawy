@@ -59,6 +59,24 @@ TEST(LeetCodeSubsets, TwoElementsListOnlyZeroes)
     ASSERT_EQ(result, 0);
 }
 
+TEST(LeetCodeSubsets, LeetCodeTestCase1)
+{
+    std::array<int, 4> test_array{1,1,0,1};
+
+    int result = longestSubarray(test_array.data(), test_array.size());
+
+    ASSERT_EQ(result, 3);
+}
+
+TEST(LeetCodeSubsets, LeetCodeTestCase2)
+{
+    std::array<int, 9> test_array{0,1,1,1,0,1,1,0,1};
+
+    int result = longestSubarray(test_array.data(), test_array.size());
+
+    ASSERT_EQ(result, 5);
+}
+
 int main(int argc, char **argv)
 {
     testing::InitGoogleTest(&argc, argv);

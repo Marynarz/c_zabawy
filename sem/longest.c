@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 int longestSubarray(int *nums, int numsSize)
 {
     if (numsSize == 0 || numsSize == 1)
@@ -12,7 +10,6 @@ int longestSubarray(int *nums, int numsSize)
 
     for (int i = 0; i < numsSize; i++)
     {
-        printf("i: %d, val:%d, act_long: %d, prev_long: %d\n", i, nums[i], act_long, prev_long);
         if (nums[i] == 0)
         {
             act_distance = prev_long + act_long;
