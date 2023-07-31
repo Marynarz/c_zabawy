@@ -11,8 +11,8 @@ int cmp_function(const void *a, const void *b)
 
 int *build_new_cuts(int *cuts, int cuts_size, int max)
 {
-    printf("MAX: %d\n", max);
-    int *new_cuts = malloc(sizeof(int) * cuts_size + 2);
+    int new_size = cuts_size + 2;
+    int *new_cuts = malloc(sizeof(int) * new_size);
 
     qsort(cuts, cuts_size, sizeof(int), &cmp_function);
 
@@ -21,7 +21,7 @@ int *build_new_cuts(int *cuts, int cuts_size, int max)
     for (int i = 1; i < cuts_size + 1; i++)
         new_cuts[i] = cuts[i - 1];
 
-    new_cuts[cuts_size + 1] = max;
+    new_cuts[new_size - 1] = max;
 
     return new_cuts;
 }
@@ -41,28 +41,9 @@ int **build_2d_array(int cuts_size)
     return array;
 }
 
-void show_2d_array(int **array, int size)
-{
-    printf("\n--- SHOW 2D ARRAY ---\n");
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-            printf(" %d ", array[i][j]);
-        // printf("(%d, %d): %d ", i, j, array[i][j]);
-
-        printf("\n");
-    }
-    printf("--- END OF 2D ARRAY ---\n");
-}
-
 int minCost(int n, int *cuts, int cutsSize)
 {
     int *new_cuts = build_new_cuts(cuts, cutsSize, n);
-
-    printf("\n");
-    for (int i = 0; i < cutsSize+2; i++)
-        printf("%d ", new_cuts[i]);
-    printf("\n");
 
     int **array = build_2d_array(cutsSize + 2);
 
@@ -79,15 +60,15 @@ int minCost(int n, int *cuts, int cutsSize)
             array[left][right] = ans;
         }
     }
-
-    show_2d_array(array, cutsSize + 2);
-
+    int ret = array[0][cutsSize + 1];
     free(new_cuts);
 
     for (int i = 0; i <= cutsSize + 2; i++)
         free(array[i]);
 
     free(array);
+
+    return ret;
 }
 
 int main(void)
@@ -98,19 +79,8 @@ int main(void)
     cuts[2] = 4;
     cuts[3] = 5;
 
-    minCost(7, cuts, 4);
+    printf("7: %d\n", minCost(7, cuts, 4));
 
     free(cuts);
-
-    int *cuts2 = malloc(sizeof(int) * 5);
-    cuts[0] = 5;
-    cuts[1] = 6;
-    cuts[2] = 1;
-    cuts[3] = 4;
-    cuts[4] = 2;
-
-    minCost(9, cuts2, 5);
-
-    free(cuts2);
     return 0;
 }
